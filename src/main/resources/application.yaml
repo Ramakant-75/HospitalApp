@@ -1,0 +1,22 @@
+server:
+  port: 9090
+  servlet:
+    contextPath: /hospital
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hospital_db
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgres
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
+    show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,promethues
+
