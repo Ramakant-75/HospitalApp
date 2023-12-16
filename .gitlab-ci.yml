@@ -2,6 +2,8 @@
 
 variables:
 
+runs-on: self-hosted
+
 MAVEN_OPTS: -Dmaven.repo.local=.m2/repository
 
 # Docker image to use latest maven distribution
