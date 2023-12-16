@@ -1,3 +1,8 @@
-test_simple_job:
-  script:
-    - echo I should execute for any pipeline trigger.
+name: learn-github-actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: self-hosted
+    steps:
+      - script:
+          - echo this is test run
