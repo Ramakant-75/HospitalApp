@@ -1,4 +1,4 @@
-package com.example.hospital.controller;
+package com.example.hospital;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
