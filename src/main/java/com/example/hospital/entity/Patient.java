@@ -32,7 +32,7 @@ public class Patient {
     private String patientName;
 
     @Column(name = "patient_age")
-    private String patientAge;
+    private int patientAge;
 
     @Column(name = "gender")
     private String gender;
@@ -43,4 +43,19 @@ public class Patient {
     @Column(name = "admitted_on")
     @Generated(GenerationTime.INSERT)
     private Timestamp admittedOn;
+
+    @Column(name = "bed_allocated")
+    private String bedAllocated;
+
+    @Column(name = "bed_no")
+    private String bedNo;
+
+    @Column(name = "room_no")
+    private String roomNo;
+
+    @Column(name = "room_type")
+    private String roomType;
+
+    @Column(name = "status")
+    private String status;
 }

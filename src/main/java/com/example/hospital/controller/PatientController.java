@@ -1,6 +1,8 @@
 package com.example.hospital.controller;
 
 import com.example.hospital.entity.Patient;
+import com.example.hospital.entity.PatientRegistration;
+import com.example.hospital.service.PatientRegistrationService;
 import com.example.hospital.service.PatientService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RestController
@@ -21,12 +24,16 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
+    @Autowired
+    private PatientRegistrationService patientRegistrationService;
+
+
     @GetMapping("/patientdetails")
     public ResponseEntity<HashMap<String,Object>> getPatientDetails(@RequestParam(name = "id",required = false)Long id,
                                                                     @RequestParam(value = "patientName",required = false)String patientName){
 
         log.info("<---------- calling /getPatientDetails API ---------->");
-        HashMap<String,Object> map = new HashMap<>();
+        HashMap<String,Object> map;
         if (id != null || patientName != null){
             map = patientService.getPatientDetailsByParam(id,patientName);
         }
@@ -59,6 +66,23 @@ public class PatientController {
 
         log.info("<---------- process complete ---------->");
         return new ResponseEntity<>(map,HttpStatus.OK);
+    }
+
+    @PostMapping("/registration")
+    @CrossOrigin
+    public ResponseEntity<HashMap<String,Object>> registerPatient(@RequestBody PatientRegistration patientRegistration){
+        HashMap<String,Object> map = new HashMap<>();
+        log.info("<----- started /registration API ----->");
+
+        map = patientRegistrationService.registerPatient(patientRegistration);
+        log.info("<----- process complete ----->");
+        return new ResponseEntity<>(map,HttpStatus.OK);
+    }
+
+    @GetMapping("/getregdetails")
+    @CrossOrigin
+    public PatientRegistration getRegistrationDetails(@RequestParam Long id){
+        return patientRegistrationService.getPatientRegistrationDetails(id);
     }
 
 }

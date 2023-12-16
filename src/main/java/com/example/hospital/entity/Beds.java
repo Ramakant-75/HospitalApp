@@ -9,17 +9,15 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "rooms")
+@Table(name = "beds")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Rooms {
+public class Beds {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "beds_seq_gen")
+    @SequenceGenerator(name = "beds_seq_gen",sequenceName = "beds_seq",allocationSize = 1)
     private Long id;
-
-    @Column(name = "floor")
-    private int floor;
 
     @Column(name = "room_no")
     private String roomNo;
@@ -27,10 +25,13 @@ public class Rooms {
     @Column(name = "room_type")
     private String roomType;
 
-    @Column(name = "no_of_total_beds")
-    private int noOfTotalBeds;
+    @Column(name = "bed_no")
+    private String bedNo;
 
-    @Column(name = "no_of_available_beds")
-    private int noOfAvailableBeds;
+    @Column(name = "patient_id")
+    private Long patientId;
+
+    @Column(name = "is_occupied")
+    private String isOccupied;
 
 }

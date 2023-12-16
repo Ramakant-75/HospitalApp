@@ -15,4 +15,10 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
 
     @Query(value = "select count(*) from patient where id =:id",nativeQuery = true)
     int getCount(@Param("id") Long id);
+
+    @Query(value = "select * from patient where id =:Id",nativeQuery = true)
+    Patient findPatientId(@Param("Id") Long id);
+
+    @Query(value = "SELECT count(*) from patient where bed_no =:bedNo and bed_allocated = 'N' and status <> 'ADMITTED'",nativeQuery = true)
+    int getBedCount(String bedNo);
 }
