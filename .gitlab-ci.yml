@@ -1,8 +1,14 @@
-name: learn-github-actions
-on: [push]
-jobs:
-  check-bats-version:
-    runs-on: self-hosted
-    steps:
-      - script:
-          - echo this is test run
+stages:
+  - build
+  - test
+  - deploy
+
+build-job:
+  stage: build
+  script:
+    - echo "this is build stage"
+
+test-job:
+  stage: test
+  script:
+    - echo "this is test stage"
